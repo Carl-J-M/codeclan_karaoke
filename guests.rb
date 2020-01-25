@@ -12,4 +12,7 @@ attr_reader :name, :favorite_song, :total_guests
     return @funds
   end
 
+  def top_up_funds(amount)
+    @funds += amount
+  end
 end

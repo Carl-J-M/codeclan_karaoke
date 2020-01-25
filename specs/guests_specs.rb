@@ -24,5 +24,9 @@ class TestGuest < Minitest::Test
   def test_get_group_total
     assert_equal(9, @group1.total_guests)
   end
+  def test_top_up_funds
+    @group1.top_up_funds(50)
+    assert_equal(350, @group1.get_guest_funds)
+  end
 
 end
