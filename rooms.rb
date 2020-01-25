@@ -1,10 +1,10 @@
 require_relative('songs.rb')
 
 class Room
-attr_reader :number, :capacity, :price
+attr_reader :number, :capacity, :price, :name
 
-  def initialize(room_number, capacity, price)
-
+  def initialize(name, room_number, capacity, price)
+    @name = name
     @number = room_number
     @capacity = capacity
     @price = price
@@ -21,13 +21,13 @@ attr_reader :number, :capacity, :price
   end
 
   def check_in(group_to_check_in)
-    if @capacity >= group_to_check_in.total_guests && @guests.count == 0
+    if @capacity >= group_to_check_in.total_guests.to_i && @guests.count == 0
     @guests.push(group_to_check_in)
     end
   end
 
   def charge_guest(guest_to_charge)
-    guest_to_charge.top_up_funds(-@price)
+    guest_to_charge.top_up_funds(-@price) #Misnamed this function pretty badly
     @till += @price
   end
 
@@ -36,6 +36,13 @@ attr_reader :number, :capacity, :price
   end
   def get_songs()
     return @songs_list
+  end
+  def check_if_song_exists(song_name_to_check)
+    for song in @songs_list
+      if song.name == song_name_to_check
+        return true
+      end
+    end
   end
   def add_song(song_to_add)
     @songs_list.push(song_to_add)

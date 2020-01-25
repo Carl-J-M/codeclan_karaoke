@@ -12,7 +12,7 @@ class TestRooms < Minitest::Test
   def setup
     @song1 = Song.new("Twenty-One-Pilots", "Alternative", "The Hype")
     @group1 = Guests.new("Smith", 300, "All-Star", 9)
-    @green_room = Room.new(1, 10, 150) #Room number. Capacity. Price.
+    @green_room = Room.new("Green Room",1, 10, 150) #Room number. Capacity. Price.
   end
 
   def test_room_number
@@ -47,6 +47,12 @@ class TestRooms < Minitest::Test
   def test_add_song_to_room
     @green_room.add_song(@song1)
     assert_equal(1, @green_room.get_songs.count())
+  end
+
+  def test_check_if_song_exists
+    @green_room.add_song(@song1)
+    myBool = @green_room.check_if_song_exists(@song1.name)
+    assert_equal(true, myBool)
   end
 
 end
