@@ -28,5 +28,8 @@ class TestGuest < Minitest::Test
     @group1.top_up_funds(50)
     assert_equal(350, @group1.get_guest_funds)
   end
+  def test_group_cheer
+    assert_equal(true, @group1.cheer("All-Star"))
+  end
 
 end
