@@ -41,7 +41,12 @@ class TestRooms < Minitest::Test
 
   def test_add_money_to_till
     @green_room.charge_guest(@group1)
-    assert_equal(150, @green_room.get_till_contents())  
+    assert_equal(150, @green_room.get_till_contents())
+  end
+
+  def test_add_song_to_room
+    @green_room.add_song(@song1)
+    assert_equal(1, @green_room.get_songs.count())
   end
 
 end

@@ -1,3 +1,5 @@
+require_relative('songs.rb')
+
 class Room
 attr_reader :number, :capacity, :price
 
@@ -32,6 +34,11 @@ attr_reader :number, :capacity, :price
   def get_till_contents()
     return @till
   end
-
+  def get_songs()
+    return @songs_list
+  end
+  def add_song(song_to_add)
+    @songs_list.push(song_to_add)
+  end
 
 end
