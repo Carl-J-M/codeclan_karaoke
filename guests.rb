@@ -16,6 +16,7 @@ attr_reader :name, :favorite_song, :total_guests
     @funds += amount
   end
 
+
   def cheer(song_to_check)
     if song_to_check == @favorite_song
       p "Woo!!"

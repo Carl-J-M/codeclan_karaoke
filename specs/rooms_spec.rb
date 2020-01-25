@@ -27,4 +27,21 @@ class TestRooms < Minitest::Test
     assert_equal(150, @green_room.price)
   end
 
+  def test_get_current_guests
+    assert_equal([], @green_room.get_current_guests())
+  end
+  def test_add_guest_to_room
+    @green_room.check_in(@group1)
+    assert_equal(1, @green_room.get_current_guests().count)
+  end
+  def test_charge_guest_for_room
+    @green_room.charge_guest(@group1)
+    assert_equal(150, @group1.get_guest_funds())
+  end
+
+  def test_add_money_to_till
+    @green_room.charge_guest(@group1)
+    assert_equal(150, @green_room.get_till_contents())  
+  end
+
 end
