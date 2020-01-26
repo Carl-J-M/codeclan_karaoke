@@ -21,10 +21,10 @@ while (group_name.match? /\A[a-zA-Z'-]*\z/) != true
   group_name = gets.chomp
 end
 p "Please enter your total budget:"
-group_funds = gets.chomp
+group_funds = gets.chomp.to_i
 
 p "Please enter your total number of persons."
-group_people = gets.chomp
+group_people = gets.chomp.to_i
 p "Enter your favorite song!"
 group_fav_song = gets.chomp
 
@@ -37,26 +37,29 @@ end
 
 p "The following rooms are avaliable:"
 for room in room_array
-  if room.price.to_i < @new_group.get_guest_funds.to_i
+  if room.price.to_i <= @new_group.get_guest_funds.to_i && @new_group.total_guests <= room.capacity
     p "#{room.number}: #{room.name} - £#{room.price}"
   end
 end
 p "Please enter room number to select."
-room_choice = gets.chomp
-room_choice = room_choice.to_i
-  if room_choice.to_i == 1
+room_choice = gets.chomp.to_i
+
+  if room_choice == 1
     @green_room.check_in(@new_group)
     p "Checked into #{@green_room.name}"
+    @green_room.charge_guest(@new_group)
   end
   if room_choice.to_i == 2
     @red_room.check_in(@new_group)
       p "Checked into #{@red_room.name}"
+    @red_room.charge_guest(@new_group)
   end
   if room_choice.to_i == 3
     @yellow_room.check_in(@new_group)
       p "Checked into #{@yellow_room.name}"
+    @yellow_room.charge_guest(@new_group)
   end
-  p "Booking complete. \n Booked under #{@new_group.name}.\n Account Credit £#{@new_group.get_guest_funds}."
+  p "Booking complete. Booked under #{@new_group.name}. Account Credit £#{@new_group.get_guest_funds}."
   p "End of program."
 end
 

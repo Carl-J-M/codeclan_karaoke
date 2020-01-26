@@ -1,4 +1,6 @@
 require_relative('songs.rb')
+require_relative('guests.rb')
+require_relative('rooms.rb')
 
 class Room
 attr_reader :number, :capacity, :price, :name
